@@ -51,10 +51,17 @@ size_t ResourceManager::getResourceSize(string resourceName) {
     return internalResourceMap[resourceName].size();
 }
 
-sf::Sprite ResourceManager::getSpriteFromResourceName(std::string resourceName) {
-    sf::Texture* texture = new sf::Texture;
+sf::Sprite ResourceManager::getSpriteFromResourceName(const std::string resourceName) {
+    auto *texture = new sf::Texture;
     loadResourceIntoTexture(*texture, resourceName);
     texturePool.push_back(texture);
     return sf::Sprite(*texture);
+}
+
+sf::Font ResourceManager::getFontFromResourceName(const std::string resourceName) {
+    sf::Font font;
+    vector<unsigned char> &data = internalResourceMap[resourceName];
+    font.loadFromMemory(data.data(), data.size());
+    return font;
 }
 

@@ -4,12 +4,12 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics/View.hpp>
 #include "UpdateListener.h"
-#include "KeyMapping.h"
+#include "UserPreferences.h"
 #include "Game.h"
 #include "Layer.h"
 
 class Camera : public UpdateListener, public Layer {
-    UserPreferences &keyMapper;
+    UserPreferences &userPreferences;
     sf::View &view;
 
     sf::Vector2f position;

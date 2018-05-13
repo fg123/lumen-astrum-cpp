@@ -25,7 +25,7 @@ public:
 
     void update(sf::Int32) override;
 
-    void addLayer(Layer &);
+    void pushLayer(Layer &);
 
     void registerUpdateListener(UpdateListener &updateListener);
 

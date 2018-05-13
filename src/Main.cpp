@@ -7,6 +7,7 @@
 #include "Camera.h"
 #include "Map.h"
 #include "UserInterface.h"
+#include "Console.h"
 
 #define WIN_TITLE "Lumen Astrum"
 
@@ -16,6 +17,8 @@ int main() {
     sf::View cameraView(sf::FloatRect(0, 0, WIN_WIDTH, WIN_HEIGHT));
     sf::View regularView(sf::FloatRect(0, 0, WIN_WIDTH, WIN_HEIGHT));
     sf::View scalingView(sf::FloatRect(0, 0, WIN_WIDTH, WIN_HEIGHT));
+
+    Console console(userPreferences, resourceManager, regularView);
     Game game(resourceManager, cameraView, regularView);
 
     Camera camera(game, userPreferences, cameraView);
@@ -23,10 +26,11 @@ int main() {
     UserInterface userInterface(game, resourceManager, regularView);
 
     Drawable backgroundDrawable(resourceManager, "background.png", scalingView);
-    game.addLayer(backgroundDrawable);
-    game.addLayer(map);
-    game.addLayer(camera);
-    game.addLayer(userInterface);
+    game.pushLayer(backgroundDrawable);
+    game.pushLayer(map);
+    game.pushLayer(camera);
+    game.pushLayer(console);
+    game.pushLayer(userInterface);
 
     sf::RenderWindow window(sf::VideoMode(WIN_WIDTH, WIN_HEIGHT), WIN_TITLE,
                             sf::Style::Titlebar | sf::Style::Resize | sf::Style::Close);
@@ -45,7 +49,7 @@ int main() {
                     game.onKeyDown(event.key);
                     break;
                 case sf::Event::KeyReleased:
-                     game.onKeyUp(event.key);
+                    game.onKeyUp(event.key);
                     break;
                 case sf::Event::MouseWheelMoved:
                     game.onMouseWheeled(event.mouseWheel.delta);

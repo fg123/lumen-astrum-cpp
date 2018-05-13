@@ -1,8 +1,8 @@
 
 #include "Camera.h"
 
-Camera::Camera(Game &game, UserPreferences &keyMapper, sf::View &view) :
-        keyMapper(keyMapper), view(view) {
+Camera::Camera(Game &game, UserPreferences &userPreferences, sf::View &view) :
+        userPreferences(userPreferences), view(view) {
     game.registerUpdateListener(*this);
 }
 
@@ -18,18 +18,18 @@ void Camera::update(sf::Int32 deltaTime) {
 }
 
 bool Camera::onKeyDown(sf::Event::KeyEvent key) {
-    if (key.code == keyMapper.getKey(KeyMapping::MAP_LEFT)) leftKeyDown = true;
-    if (key.code == keyMapper.getKey(KeyMapping::MAP_RIGHT)) rightKeyDown = true;
-    if (key.code == keyMapper.getKey(KeyMapping::MAP_DOWN)) downKeyDown = true;
-    if (key.code == keyMapper.getKey(KeyMapping::MAP_UP)) upKeyDown = true;
+    if (key.code == userPreferences.getKey(KeyMapping::CAMERA_LEFT)) leftKeyDown = true;
+    if (key.code == userPreferences.getKey(KeyMapping::CAMERA_RIGHT)) rightKeyDown = true;
+    if (key.code == userPreferences.getKey(KeyMapping::CAMERA_DOWN)) downKeyDown = true;
+    if (key.code == userPreferences.getKey(KeyMapping::CAMERA_UP)) upKeyDown = true;
     return false;
 }
 
 bool Camera::onKeyUp(sf::Event::KeyEvent key) {
-    if (key.code == keyMapper.getKey(KeyMapping::MAP_LEFT)) leftKeyDown = false;
-    if (key.code == keyMapper.getKey(KeyMapping::MAP_RIGHT)) rightKeyDown = false;
-    if (key.code == keyMapper.getKey(KeyMapping::MAP_DOWN)) downKeyDown = false;
-    if (key.code == keyMapper.getKey(KeyMapping::MAP_UP)) upKeyDown = false;
+    if (key.code == userPreferences.getKey(KeyMapping::CAMERA_LEFT)) leftKeyDown = false;
+    if (key.code == userPreferences.getKey(KeyMapping::CAMERA_RIGHT)) rightKeyDown = false;
+    if (key.code == userPreferences.getKey(KeyMapping::CAMERA_DOWN)) downKeyDown = false;
+    if (key.code == userPreferences.getKey(KeyMapping::CAMERA_UP)) upKeyDown = false;
     return false;
 }
 

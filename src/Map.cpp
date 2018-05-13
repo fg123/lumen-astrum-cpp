@@ -2,7 +2,6 @@
 #include "Map.h"
 
 Map::Map(Game &game, ResourceManager &resourceManager, sf::View &view) : resourceManager(resourceManager), view(view) {
-    game.registerUpdateListener(*this);
     unsigned char *mapRaw = resourceManager.getResourceAddress("map.bin");
     width = mapRaw[0];
     height = mapRaw[1];
@@ -26,7 +25,4 @@ void Map::draw(sf::RenderWindow &window) {
             window.draw(spriteMap[map[y][x].type]);
         }
     }
-}
-
-void Map::update(sf::Int32 deltaTime) {
 }

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Game.h"
-#include "KeyMapping.h"
+#include "UserPreferences.h"
 
 Game::Game(ResourceManager &resourceManager, sf::View &cameraView, sf::View &regularView) :
         resourceManager(resourceManager),
@@ -24,7 +24,7 @@ void Game::update(sf::Int32 deltaTime) {
     }
 }
 
-void Game::addLayer(Layer &layer) {
+void Game::pushLayer(Layer &layer) {
     layers.push_front(&layer);
 }
 

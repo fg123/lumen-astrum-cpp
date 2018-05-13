@@ -8,10 +8,11 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <memory>
+#include <SFML/Graphics/Font.hpp>
 
 class ResourceManager {
     std::map<std::string, std::vector<unsigned char>> internalResourceMap;
-    std::vector<sf::Texture*> texturePool;
+    std::vector<sf::Texture *> texturePool;
 
 public:
     ResourceManager();
@@ -27,6 +28,8 @@ public:
     size_t getResourceSize(std::string resourceName);
 
     sf::Sprite getSpriteFromResourceName(std::string resourceName);
+
+    sf::Font getFontFromResourceName(std::string resourceName);
 };
 
 

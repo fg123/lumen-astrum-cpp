@@ -8,7 +8,7 @@
 #define WIN_WIDTH 1280
 #define WIN_HEIGHT 720
 enum class KeyMapping {
-    MAP_LEFT, MAP_RIGHT, MAP_UP, MAP_DOWN
+    CAMERA_LEFT, CAMERA_RIGHT, CAMERA_UP, CAMERA_DOWN, CONSOLE_ACTIVATE
 };
 
 class UserPreferences {
@@ -24,10 +24,11 @@ public:
     }
 
     void generateDefaultMapping() {
-        map[KeyMapping::MAP_LEFT] = sf::Keyboard::Key::A;
-        map[KeyMapping::MAP_RIGHT] = sf::Keyboard::Key::D;
-        map[KeyMapping::MAP_UP] = sf::Keyboard::Key::W;
-        map[KeyMapping::MAP_DOWN] = sf::Keyboard::Key::S;
+        map[KeyMapping::CAMERA_LEFT] = sf::Keyboard::Key::A;
+        map[KeyMapping::CAMERA_RIGHT] = sf::Keyboard::Key::D;
+        map[KeyMapping::CAMERA_UP] = sf::Keyboard::Key::W;
+        map[KeyMapping::CAMERA_DOWN] = sf::Keyboard::Key::S;
+        map[KeyMapping::CONSOLE_ACTIVATE] = sf::Keyboard::Key::F1;
     }
 };
 

@@ -7,7 +7,7 @@
 #include "Game.h"
 #include "Layer.h"
 
-class Map : public UpdateListener, public Layer {
+class Map : public Layer {
     ResourceManager &resourceManager;
     std::vector<std::vector<MapTile>> map;
     int width;
@@ -19,8 +19,6 @@ public:
     Map(Game &, ResourceManager &, sf::View &);
 
     void draw(sf::RenderWindow &window) override;
-
-    void update(sf::Int32 deltaTime) override;
 };
 
 
