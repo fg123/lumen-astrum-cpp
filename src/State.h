@@ -8,35 +8,15 @@
 #include <string>
 #include <chrono>
 #include <vector>
+#include <memory>
 #include "StateChange.h"
-
-enum class Side {
-    RED, BLUE
-};
-
-enum class Status {
-    IN_PROGRESS, RED_WIN, BLUE_WIN
-};
-
-class Player {
-public:
-    std::string username;
-    int turnCount;
-    int money;
-
-};
-
-class ChatEntry {
-public:
-    Side from;
-    std::string message;
-};
+#include "StateComponents.h"
 
 class State {
 public:
     Player redPlayer;
     Player bluePlayer;
-    Status gameStatus;
+    Status gameStatus = Status::IN_PROGRESS;
     std::time_t startTime;
     // map objects
     // visibility map
@@ -47,7 +27,11 @@ public:
     Player &currentTurn;
     std::time_t turnStartTime;
     std::vector<ChatEntry> chat;
-    std::vector<StateChange> stateChanges;
+    std::vector<std::unique_ptr<StateChange>> stateChanges;
+
+    State() : currentTurn(redPlayer) {}
+
+    void applyStateChange(std::unique_ptr<StateChange> stateChange);
 };
 
 #endif //STATE_H

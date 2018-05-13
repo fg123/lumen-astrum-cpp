@@ -17,6 +17,8 @@ class LayerEvents {
 
     virtual bool onKeyUp(sf::Event::KeyEvent) = 0;
 
+    virtual bool onTextEntered(sf::Event::TextEvent) = 0;
+
     virtual bool onMouseWheeled(int value) = 0;
 
     virtual void draw(sf::RenderWindow &) = 0;
@@ -33,6 +35,8 @@ public:
     bool onMouseWheeled(int value) override { return false; }
 
     void draw(sf::RenderWindow &) override {}
+
+    bool onTextEntered(sf::Event::TextEvent) override { return false; };
 };
 
 #endif

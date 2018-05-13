@@ -1,6 +1,8 @@
 #include <iostream>
+#include <memory>
 #include "Game.h"
 #include "UserPreferences.h"
+#include "StateChange.h"
 
 Game::Game(ResourceManager &resourceManager, sf::View &cameraView, sf::View &regularView) :
         resourceManager(resourceManager),
@@ -37,5 +39,9 @@ void Game::setWindowSize(sf::Vector2u size) {
     cameraView.setSize(windowSize.x, windowSize.y);
     regularView.setSize(windowSize.x, windowSize.y);
     regularView.setCenter((int) (windowSize.x / 2), (int) (windowSize.y / 2));
+}
+
+void Game::applyStateChange(std::unique_ptr<StateChange> stateChange) {
+    gameState.applyStateChange(std::move(stateChange));
 }
 

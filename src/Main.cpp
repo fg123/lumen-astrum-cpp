@@ -18,8 +18,8 @@ int main() {
     sf::View regularView(sf::FloatRect(0, 0, WIN_WIDTH, WIN_HEIGHT));
     sf::View scalingView(sf::FloatRect(0, 0, WIN_WIDTH, WIN_HEIGHT));
 
-    Console console(userPreferences, resourceManager, regularView);
     Game game(resourceManager, cameraView, regularView);
+    Console console(game, userPreferences, resourceManager, regularView);
 
     Camera camera(game, userPreferences, cameraView);
     Map map(game, resourceManager, cameraView);
@@ -55,7 +55,7 @@ int main() {
                     game.onMouseWheeled(event.mouseWheel.delta);
                     break;
                 case sf::Event::TextEntered:
-
+                    game.onTextEntered(event.text);
                     break;
                 case sf::Event::Resized:
                     game.setWindowSize(sf::Vector2u(event.size.width, event.size.height));
